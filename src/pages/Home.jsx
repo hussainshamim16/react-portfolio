@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { personal, skills, projects, testimonials } from '../data/portfolio'
 
-const TYPED_STRINGS = ['Frontend Developer', 'CMS Specialist', 'React Developer', 'WordPress Expert']
+const TYPED_STRINGS = ['HTML CSS JS', 'CMS Specialist', 'React Developer', 'WordPress Expert']
 
 function TypedText() {
   const [idx, setIdx] = useState(0)
@@ -81,8 +81,8 @@ export default function Home() {
               {/* Stats */}
               <div className="flex gap-8 mt-10">
                 {[
-                  { value: '4+', label: 'Years Exp.' },
-                  { value: '30+', label: 'Projects Done' },
+                  { value: '3+', label: 'Years Exp.' },
+                  { value: '50+', label: 'Projects Done' },
                   { value: '4', label: 'Companies' },
                 ].map((s) => (
                   <div key={s.label}>
