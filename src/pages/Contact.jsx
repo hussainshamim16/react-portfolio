@@ -1,34 +1,50 @@
-import { useState } from 'react'
-import { personal } from '../data/portfolio'
+import { useState } from 'react';
+import { personal } from '../data/portfolio';
+import { db } from '../data/scroll'; // Aapka firebase config file
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
-  const [status, setStatus] = useState(null) // 'sending' | 'sent' | 'error'
+  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
+  const [status, setStatus] = useState(null); // 'sending' | 'sent' | 'error'
 
   const handleChange = (e) => {
-    setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
-  }
+    setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
+  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setStatus('sending')
-    // Simulate sending
-    setTimeout(() => {
-      setStatus('sent')
-      setForm({ name: '', email: '', subject: '', message: '' })
-    }, 1500)
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus('sending');
+
+    try {
+      // 1. Firebase "contactMessages" collection mein data add karein
+      await addDoc(collection(db, "contactMessages"), {
+        name: form.name,
+        email: form.email,
+        subject: form.subject,
+        message: form.message,
+        createdAt: serverTimestamp(), // Time track karne ke liye
+      });
+
+      // 2. Success state set karein
+      setStatus('sent');
+      setForm({ name: '', email: '', subject: '', message: '' });
+    } catch (error) {
+      console.error("Error sending message: ", error);
+      setStatus('error');
+      alert("Something went wrong. Please try again.");
+    }
+  };
 
   const contactInfo = [
     { icon: '📧', label: 'Email', value: personal.email, href: `mailto:${personal.email}` },
-    { icon: '📞', label: 'Phone', value: personal.phone, href: `tel:${personal.phone}` },
+    // { icon: '📞', label: 'Phone', value: personal.phone, href: `tel:${personal.phone}` },
     { icon: '📍', label: 'Location', value: personal.location, href: null },
-  ]
+  ];
 
   return (
     <main className="pt-28 pb-20">
       <div className="max-w-6xl mx-auto px-6">
-        {/* Header */}
+        {/* Header Section */}
         <div className="text-center mb-16">
           <div className="inline-block px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-medium mb-4">
             Contact
@@ -40,7 +56,7 @@ export default function Contact() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
-          {/* Contact Info */}
+          {/* Left Column: Contact Info */}
           <div className="lg:col-span-2 space-y-6">
             {contactInfo.map((item) => (
               <div key={item.label} className="glass rounded-2xl p-5 flex items-center gap-4">
@@ -60,7 +76,7 @@ export default function Contact() {
               </div>
             ))}
 
-            {/* Social */}
+            {/* Social Links */}
             <div className="glass rounded-2xl p-5">
               <div className="text-slate-400 text-sm mb-4">Connect with me</div>
               <div className="flex gap-3">
@@ -83,7 +99,7 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Availability */}
+            {/* Availability Badge */}
             <div className="glass rounded-2xl p-5">
               <div className="flex items-center gap-2 mb-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-green-400 pulse-glow inline-block" />
@@ -95,7 +111,7 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Form */}
+          {/* Right Column: Contact Form */}
           <div className="lg:col-span-3">
             <div className="glass rounded-2xl p-8">
               {status === 'sent' ? (
@@ -189,5 +205,5 @@ export default function Contact() {
         </div>
       </div>
     </main>
-  )
+  );
 }

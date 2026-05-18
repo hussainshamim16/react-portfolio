@@ -41,9 +41,9 @@ export default function Skills() {
     { name: 'Git & GitHub', icon: '🔀' },
     { name: 'Figma', icon: '🎨' },
     { name: 'Elementor', icon: '🔧' },
+    { name: 'Wp Bakery', icon: '🧁' },
     { name: 'Shopify Admin', icon: '🛒' },
     { name: 'Chrome DevTools', icon: '🔍' },
-    { name: 'Postman', icon: '📡' },
     { name: 'npm / Yarn', icon: '📦' },
   ]
 

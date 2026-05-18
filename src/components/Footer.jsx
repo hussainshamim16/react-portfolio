@@ -73,9 +73,8 @@ export default function Footer() {
 
         <div className="section-divider my-8" />
 
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 text-sm text-slate-500">
           <p>© {new Date().getFullYear()} {personal.name}. All rights reserved.</p>
-          <p>Built with React & Tailwind CSS</p>
         </div>
       </div>
     </footer>

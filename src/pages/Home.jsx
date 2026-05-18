@@ -1,8 +1,13 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { personal, skills, projects, testimonials } from '../data/portfolio'
-
-const TYPED_STRINGS = ['HTML CSS JS', 'CMS Specialist', 'React Developer', 'WordPress Expert']
+// firebase
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../data/scroll.js";
+import SliderSwiper from '../components/Slider.jsx'
+import ProjectsSection from '../components/ProjectsSection.jsx';
+import BlogsList from '../components/BlogSection.jsx';
+const TYPED_STRINGS = ['Javascript Developer', 'Shopify Expert', 'React Developer', 'WordPress Expert']
 
 function TypedText() {
   const [idx, setIdx] = useState(0)
@@ -33,6 +38,26 @@ function TypedText() {
 }
 
 export default function Home() {
+
+
+  //date fetch from firebase
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const querySnapshot = await getDocs(collection(db, "blogs"));
+      const items = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      // setData(items);
+      // console.log(items)
+    };
+    fetchData();
+  }, []);
+
+
+
   return (
     <main>
       {/* Hero */}
@@ -71,10 +96,11 @@ export default function Home() {
                   View My Work
                 </Link>
                 <Link
-                  to="/contact"
+                  target='_blank'
+                  to='https://muhammadhussainshamim16.netlify.app/assets/pdf/resume-me.pdf'
                   className="px-6 py-3 border border-slate-600 hover:border-blue-500 text-slate-300 hover:text-white font-semibold rounded-xl transition-all duration-200"
                 >
-                  Get In Touch
+                  Resume
                 </Link>
               </div>
 
@@ -100,15 +126,16 @@ export default function Home() {
                   <img
                     src={personal.profileImage}
                     alt={personal.name}
+                    // style={{ filter: 'grayscale(1)' }}
                     className="w-full h-full object-cover"
                   />
                 </div>
                 {/* Badge */}
-                <div className="absolute -bottom-4 -left-4 glass rounded-xl px-4 py-3 shadow-xl">
+                <div className="absolute bottom-20 -left-25 glass rounded-xl px-4 py-3 shadow-xl md:block hidden">
                   <div className="text-xs text-slate-400">Current Role</div>
                   <div className="text-sm font-semibold text-white mt-0.5">Frontend Developer</div>
                 </div>
-                <div className="absolute -top-4 -right-4 glass rounded-xl px-4 py-3 shadow-xl">
+                <div className="absolute top-20 -right-15 glass rounded-xl px-3 py-3 shadow-xl md:block hidden">
                   <div className="text-xs text-slate-400">Specialization</div>
                   <div className="text-sm font-semibold text-white mt-0.5">React & WordPress</div>
                 </div>
@@ -119,7 +146,7 @@ export default function Home() {
       </section>
 
       {/* Skills preview */}
-      <section className="py-20 bg-[#080810]">
+      <section className="py-20 bg-[#080810] min-h-screen ">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-white mb-3">Core Expertise</h2>
@@ -151,48 +178,13 @@ export default function Home() {
       </section>
 
       {/* Featured Projects */}
-      <section className="py-20">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex items-end justify-between mb-12">
-            <div>
-              <h2 className="text-3xl font-bold text-white mb-2">Featured Projects</h2>
-              <p className="text-slate-400">Some of my recent work</p>
-            </div>
-            <Link to="/projects" className="text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors">
-              View All →
-            </Link>
-          </div>
+      <ProjectsSection />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.slice(0, 3).map((project) => (
-              <div key={project.id} className="glass rounded-2xl overflow-hidden card-hover group">
-                <div className="h-44 overflow-hidden relative">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/80 to-transparent" />
-                  <span className="absolute top-3 right-3 text-xs px-2 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30">
-                    {project.category}
-                  </span>
-                </div>
-                <div className="p-5">
-                  <h3 className="text-white font-semibold text-lg mb-2">{project.title}</h3>
-                  <p className="text-slate-400 text-sm leading-relaxed mb-4 line-clamp-2">{project.description}</p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.tags.map((tag) => (
-                      <span key={tag} className="text-xs px-2 py-0.5 rounded-full bg-slate-800 text-slate-300">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* certificates */}
+      <SliderSwiper />
+
+      {/* blog section */}
+      <BlogsList />
 
       {/* Testimonials */}
       <section className="py-20 bg-[#080810]">
@@ -228,7 +220,7 @@ export default function Home() {
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent rounded-full" />
             <h2 className="text-3xl font-bold text-white mb-4">Ready to Build Something Great?</h2>
             <p className="text-slate-400 mb-8 leading-relaxed">
-              Whether you need a brand new website, a React app, or a WordPress/Shopify store — let&apos;s talk about your project.
+              Whether you need a brand new website, a React app, or a WordPress/Shopify store let&apos;s talk about your project.
             </p>
             <Link
               to="/contact"

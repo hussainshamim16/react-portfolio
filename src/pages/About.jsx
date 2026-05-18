@@ -3,7 +3,7 @@ import { personal, experience, certificates } from '../data/portfolio'
 
 export default function About() {
   return (
-    <main className="pt-28 pb-20">
+    <main className="pt-28 pb-20 min-h-screen ">
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">
@@ -21,17 +21,18 @@ export default function About() {
           <div className="relative">
             <div className="w-full max-w-sm mx-auto rounded-2xl overflow-hidden glow-blue border border-blue-500/20">
               <img
-                src={personal.profileImage}
+                src={personal.aboutprofileImage}
                 alt={personal.name}
                 className="w-full h-80 object-cover"
+                style={{ objectPosition: '2px -35px' }}
               />
             </div>
-            <div className="absolute -bottom-4 -right-4 glass rounded-2xl p-5 shadow-xl max-w-48">
+            {/* <div className="absolute -bottom-4 -right-4 glass rounded-2xl p-5 shadow-xl max-w-48">
               <div className="text-slate-400 text-xs mb-1">Based in</div>
               <div className="text-white font-semibold">{personal.location}</div>
               <div className="text-slate-400 text-xs mt-2 mb-1">Email</div>
               <div className="text-blue-400 text-xs break-all">{personal.email}</div>
-            </div>
+            </div> */}
           </div>
 
           <div>
@@ -50,7 +51,8 @@ export default function About() {
                 Hire Me
               </Link>
               <a
-                href={personal.cvLink}
+                target='_blank'
+                href="https://muhammadhussainshamim16.netlify.app/assets/pdf/resume-me.pdf"
                 className="px-6 py-3 border border-slate-600 hover:border-blue-500 text-slate-300 hover:text-white font-semibold rounded-xl transition-all duration-200"
               >
                 Download CV
@@ -77,8 +79,8 @@ export default function About() {
                   <div className="glass rounded-2xl p-6">
                     <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
                       <div>
-                        <h3 className="text-white font-semibold text-lg">{exp.role}</h3>
-                        <div className="text-blue-400 font-medium">{exp.company}</div>
+                        <h3 className="text-white font-semibold text-lg capitalize">{exp.role}</h3>
+                        <div className="text-blue-400 font-medium capitalize">{exp.company}</div>
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="text-xs px-3 py-1 rounded-full bg-slate-800 text-slate-400">

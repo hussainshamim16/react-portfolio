@@ -23,7 +23,7 @@ export default function Navbar() {
         scrolled ? 'glass shadow-lg shadow-blue-500/5' : 'bg-transparent'
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-6 pt-5 py-4 flex items-center justify-between">
         <Link to="/" className="font-heading font-bold text-xl text-white hover:text-blue-400 transition-colors">
           <span className="gradient-text">&lt;</span>
           {personal.shortName}

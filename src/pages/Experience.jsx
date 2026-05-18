@@ -1,4 +1,5 @@
 import { experience, certificates } from '../data/portfolio'
+import Slider from '../components/Slider'
 
 export default function Experience() {
   return (
@@ -59,13 +60,13 @@ export default function Experience() {
 
         {/* Education & Certs */}
         <div>
-          <div className="text-center mb-12">
+          {/* <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-white mb-3">Certifications</h2>
             <p className="text-slate-400">Official credentials and training programs</p>
           </div>
 
-          <div className="space-y-4">
-            {certificates.map((cert) => (
+          <div className="space-y-4"> */}
+            {/* {certificates.map((cert) => (
               <div key={cert.id} className="glass rounded-2xl p-6 flex items-center gap-5 card-hover">
                 <div className="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-2xl flex-shrink-0">
                   🏅
@@ -78,8 +79,9 @@ export default function Experience() {
                   {cert.year}
                 </span>
               </div>
-            ))}
-          </div>
+            ))} */}
+            <Slider />
+          {/* </div> */}
         </div>
       </div>
     </main>

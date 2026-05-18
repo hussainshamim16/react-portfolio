@@ -1,3 +1,7 @@
+import myimage from '../assets/hussain1.png'
+import myimage1 from '../assets/muhammad hussain shamim.png'
+
+
 export const personal = {
   name: "Muhammad Hussain Shamim",
   shortName: "Hussain",
@@ -5,16 +9,18 @@ export const personal = {
   subtitle: "& CMS Specialist",
   tagline: "Turning complex designs into functional websites.",
   bio: "A Frontend Developer specialized in React, WordPress, and Shopify. I build fast, responsive websites with clean code to help your business grow online.",
-  phone: "+923160578265",
+  // phone: "+923160578265",
+  phone: "NAN",
   email: "hussainshamimdev@gmail.com",
   location: "Pakistan",
   // profileImage: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=600",
-  profileImage: "https://muhammadhussainshamim16.netlify.app/assets/images/about/muhammad%20hussain%20shamim16.png",
+  profileImage: myimage1,
+  aboutprofileImage: myimage,
   social: {
     linkedin: "https://www.linkedin.com/in/muhammadhussainshamim/",
     github: "https://github.com/muhammadhussainshamim",
   },
-  cvLink: "#",
+  // cvLink: resume,
 };
 
 export const skills = [
@@ -140,42 +146,42 @@ export const projects = [
 export const experience = [
   {
     id: 1,
-    company: "Solutionsgram",
-    role: "Frontend Developer",
-    period: "2023 – Present",
-    description: "Developing responsive web applications and custom WordPress solutions for diverse clients. Leading frontend architecture decisions and mentoring junior developers.",
+    company: "Devstren",
+    role: "CMS Developer",
+    period: "2025 – present",
+    description: "Working as a Senior CMS + Frontend Developer, leading website development projects with a strong focus on CMS platforms and modern frontend technologies. I handle complete website execution from design to deployment, ensuring performance, responsiveness, and clean code standards.",
     current: true,
   },
   {
     id: 2,
-    company: "Devstren",
-    role: "React Developer",
-    period: "2022 – 2023",
-    description: "Built multiple SPAs using React with a focus on performance optimization and clean component architecture. Collaborated closely with designers and backend teams.",
+    company: "Planet Excellence",
+    role: "Frontend Developer",
+    period: "2024 – 2025",
+    description: "As a JavaScript Frontend Developer at Planet Excellence Group I have been developing responsive user friendly web interfaces using React, Firebase, and modern frontend tools.These roles have enhanced my skills in UI development, cross-platform compatibility, and performance optimization.",
     current: false,
   },
   {
     id: 3,
-    company: "Planet Excellence",
-    role: "Frontend Developer",
-    period: "2021 – 2022",
-    description: "Developed client websites using HTML, CSS, JavaScript, and Bootstrap. Customized WordPress themes and integrated third-party APIs.",
+    company: "Solutionsgram",
+    role: "Wordpress & shopify developer",
+    period: "2023 – 2024",
+    description: "Worked as a WordPress Developer at Solutions Grams for 1 year, where I created responsive websites, customized themes and plugins, and ensured optimal performance through SEO implementation and regular maintenance.",
     current: false,
   },
   {
     id: 4,
     company: "Bakhshish Associates",
     role: "Junior Web Developer",
-    period: "2020 – 2021",
+    period: "2022 – 2023",
     description: "Started professional career building static websites and WordPress solutions. Gained experience in responsive design and cross-browser compatibility.",
     current: false,
   },
 ];
 
 export const certificates = [
-  { id: 1, name: "React Development", issuer: "SMIT — Saylani Mass IT Training", year: "2023" },
-  { id: 2, name: "Web Development Fundamentals", issuer: "Microsoft", year: "2022" },
-  { id: 3, name: "Frontend Specialization", issuer: "SMIT — Saylani Mass IT Training", year: "2022" },
+  { id: 2, name: "Basic Programming", issuer: "KHRES IT Training", year: "2022" },
+  { id: 3, name: "MERN Stack Development", issuer: "SMIT — Saylani Mass IT Training", year: "2024" },
+  { id: 1, name: "Wordpress Developer", issuer: "Korean Computer Academy", year: "2023" },
 ];
 
 export const testimonials = [
@@ -208,5 +214,7 @@ export const navLinks = [
   { label: "Skills", href: "/skills" },
   { label: "Projects", href: "/projects" },
   { label: "Experience", href: "/experience" },
+  { label: "Blogs", href: "/blogs" },
   { label: "Contact", href: "/contact" },
+  // { label: "AdminDashboard", href: "/admin" },
 ];

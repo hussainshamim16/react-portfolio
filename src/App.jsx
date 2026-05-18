@@ -7,6 +7,11 @@ import Skills from './pages/Skills'
 import Projects from './pages/Projects'
 import Experience from './pages/Experience'
 import Contact from './pages/Contact'
+import AdminDashboard from './pages/Admin'
+import BlogDetail from './components/BlogSection'
+import Blog from './pages/Blog'
+import BlogSingle from './pages/BlogSingle'
+import NotFound from './pages/Nofound'
 
 export default function App() {
   return (
@@ -21,6 +26,10 @@ export default function App() {
             <Route path="/projects" element={<Projects />} />
             <Route path="/experience" element={<Experience />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/xyz" element={<AdminDashboard />} />
+            <Route path="/blogs" element={<Blog />} />
+            <Route path="/blogs/:id" element={<BlogSingle />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
         <Footer />
